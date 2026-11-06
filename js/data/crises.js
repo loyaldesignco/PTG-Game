@@ -38,6 +38,19 @@ export const CRISES = {
         result: 'The money is gone within the hour. Banks rarely claw back fraudulent wires.' },
     ],
   },
+  aileak: {
+    id: 'aileak', title: 'SHADOW AI LEAK', source: 'shadowai', art: 'office',
+    prompt: 'A client calls: their payroll data turned up in a breach of a free AI app. Someone on your team uploaded it. What do you do?',
+    timeoutChoice: 'ignore',
+    choices: [
+      { id: 'revoke', label: 'REVOKE THE APP + GIVE STAFF AN APPROVED AI TOOL', quality: 1, hours: 3,
+        result: 'You cut the app\'s access, tell the client the truth and roll out an approved AI tool that protects your data. Trust bruised, not broken.' },
+      { id: 'ban', label: 'BAN ALL AI, NO FOLLOW-UP', quality: 0.4, hours: 6, loss: 4000,
+        result: 'Staff keep using AI on their phones, just quietly now. This leak is closed; the next one has already started.' },
+      { id: 'ignore', label: 'IT\'S JUST A NOTETAKER. MOVE ON', quality: 0, hours: 12, loss: 15000,
+        result: 'The app kept syncing your email for weeks. A client leaves, and your cyber insurer has questions.' },
+    ],
+  },
   ransomware: {
     id: 'ransomware', title: 'RANSOMWARE', source: 'attachment', art: 'breach',
     prompt: 'Your screen just locked. FILES ENCRYPTED. It\'s spreading to the shared drive. What do you do?',

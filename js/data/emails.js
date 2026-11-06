@@ -7,9 +7,12 @@
 // Tier 1: sloppy phish. Tier 2: brand-perfect lures. Tier 3: spear phishing.
 // Phish types drive the Act 2 attack chain:
 //   credential -> account takeover, invoice -> wire fraud,
-//   attachment -> ransomware, vendor -> supply-chain breach
+//   attachment -> ransomware, vendor -> supply-chain breach,
+//   shadowai -> AI data leak (unapproved AI apps and staff pasting client data into them)
+// Shadow AI items aren't always phish from attackers: some are well-meaning coworkers.
+// REPORT means "flag it to IT" either way.
 
-export const PHISH_TYPES = ['credential', 'invoice', 'attachment', 'vendor'];
+export const PHISH_TYPES = ['credential', 'invoice', 'attachment', 'vendor', 'shadowai'];
 
 export const EMAILS = [
   // ---------------- TIER 1 ----------------
@@ -70,6 +73,20 @@ export const EMAILS = [
       sig: '"Department of IT", and "Departmant" is misspelled in the sender name.',
     },
     lesson: 'Real updates come through your managed tools, not random email links.',
+  },
+  {
+    id: 't1-shadowai', tier: 1, phish: true, type: 'shadowai',
+    fromName: 'FreeNotes AI',
+    from: 'hello@[[dom|freenotes-ai.app]]',
+    subject: 'Your FREE AI meeting notetaker is ready!',
+    body: 'Connect your calendar and email so FreeNotes can join and record every meeting automatically.\n\n[[perm|Requires: read, send and delete all email]]',
+    link: { label: 'CONNECT MY ACCOUNT', url: '[[url|freenotes-ai.app/oauth/grant-all]]' },
+    clues: {
+      dom: 'An app nobody at your company has approved or vetted.',
+      perm: 'A notetaker has no reason to send or delete your email.',
+      url: '"grant-all": you\'d be handing an unknown app the keys to your mailbox.',
+    },
+    lesson: 'Shadow AI: free AI apps that ask for full account access. Flag them to IT.',
   },
   {
     id: 't1-legit-pizza', tier: 1, phish: false,
@@ -154,6 +171,19 @@ export const EMAILS = [
     lesson: 'Software updates arrive through your managed tools, never as email attachments.',
   },
   {
+    id: 't2-shadowai', tier: 2, phish: true, type: 'shadowai',
+    fromName: 'Jess (Accounting)', from: 'jess@{domain}',
+    subject: 'This AI tool saved me 3 hours!!',
+    body: 'I pasted the whole client payroll file into [[tool|SmartSheet AI (free version)]] and it cleaned it up instantly. [[data|Want me to do the client tax files next?]] Sign up below, it\'s free!',
+    link: { label: 'TRY IT FREE', url: '[[url|smartsheet-ai.io/free]]' },
+    clues: {
+      tool: 'A free AI tool nobody approved. Whatever you paste in may be stored or used for training.',
+      data: 'Client payroll and tax data should never leave approved systems.',
+      url: 'An unknown AI site, not a tool your company has signed up for.',
+    },
+    lesson: 'The sender is real and means well. That\'s Shadow AI: flag it and get the team an approved AI tool.',
+  },
+  {
     id: 't2-legit-sign', tier: 2, phish: false,
     fromName: 'SignFlow', from: 'notifications@signflow.com',
     subject: 'Harbor Dental sent you "Service Renewal" to sign',
@@ -234,6 +264,21 @@ export const EMAILS = [
       rem: 'Approving remote access from an email link hands over the keys.',
     },
     lesson: 'Even when the sender looks right, remote-access requests get verified first.',
+  },
+  {
+    id: 't3-shadowai', tier: 3, phish: true, type: 'shadowai',
+    fromName: 'Inbox Genius',
+    from: 'team@inboxgenius.ai',
+    subject: '[[ceo|{ceo} invited the {company} team]] to Inbox Genius AI',
+    body: '{ceo} is drafting replies 10x faster with Inbox Genius. [[ext|Add the browser extension]] and [[perm|allow it to read and change all data on every website you visit]].',
+    link: { label: 'ADD TO BROWSER', url: '[[url|inboxgenius.ai/install?team={domain}]]' },
+    clues: {
+      ceo: 'Dropping your CEO\'s name makes you skip the usual check with IT.',
+      ext: 'AI browser extensions can see everything on your screen: banking, client portals, passwords.',
+      perm: '"All data on every website" is the broadest permission a browser can grant.',
+      url: 'An unvetted extension installed from a link, not through IT.',
+    },
+    lesson: 'AI extensions read everything you see. New AI tools go through IT first, even when the CEO likes them.',
   },
   {
     id: 't3-legit-ceo', tier: 3, phish: false,

@@ -35,7 +35,7 @@ On an iPad kiosk, open it fullscreen with `?kiosk`.
 1. **Title → Clock in** (optional company, headcount, industry → personalizes the emails and downtime cost)
 2. **Shop**: 100 credits, 6 defenses (130 credits total, so you can't buy everything)
 3. **Act 1, inbox**: 15 emails in 3 difficulty tiers (sloppy → brand-perfect → spear phish that names your company and CEO), 2:00 on the clock. Report or trust each one (buttons, swipe or ←/→). Tapping a clue earns a bonus.
-4. **Act 2, the breach**: each missed phish type opens a crisis (fake login → account takeover, fake invoice → wire fraud, attachment → ransomware, vendor update → supply-chain breach). If you miss nothing, a vendor gets compromised anyway. Downtime $ ticks up while you hesitate.
+4. **Act 2, the breach**: each missed phish type opens a crisis (fake login → account takeover, fake invoice → wire fraud, attachment → ransomware, vendor update → supply-chain breach, Shadow AI → AI data leak). If you miss nothing, a vendor gets compromised anyway. Downtime $ ticks up while you hesitate.
 5. **Results**: score, stats, trophies → **full report** behind a work-email gate → CTAs.
 
 | Defense | Effect in game |
@@ -50,6 +50,17 @@ On an iPad kiosk, open it fullscreen with `?kiosk`.
 **Resilience Score (0–100):** phish caught 30 · real mail trusted 10 · clues 15 · speed 10
 (scaled by accuracy) · Act 2 decisions 25 · budget left 10 (scaled by how well the office held up).
 **Downtime cost** = hours × headcount × $55 × industry multiplier, plus direct losses (fraud, ransom).
+
+## Shadow AI (addition beyond the brief)
+
+A fifth threat type, one email per tier: a free AI notetaker asking for full mailbox access,
+a well-meaning coworker pasting client payroll into a free AI tool (a *real* internal email
+that still needs flagging), and an AI browser extension "your CEO invited you to". Missing one
+opens the **SHADOW AI LEAK** crisis: revoke the app and roll out an approved AI tool (best),
+ban all AI with no follow-up (partial), or ignore it (costly). It sells training, managed
+security and AI governance without adding a seventh shop item.
+
+Each tier still deals 3 phish from 5 types, so a run that misses everything can now hit 5 crises.
 
 ## Project layout
 

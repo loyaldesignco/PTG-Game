@@ -33,7 +33,7 @@ export function mount({ el, go, state, sfx, config, game }) {
     <div class="overlay" id="brief">
       <div class="dialog">
         <h2>YOUR SHIFT STARTS</h2>
-        <p><b>${shown.length} emails</b> are waiting. <b class="y">REPORT</b> the phish. <b>TRUST</b> the real mail.</p>
+        <p><b>${shown.length} emails</b> are waiting. <b class="y">REPORT</b> phish and risky AI apps. <b>TRUST</b> the real mail.</p>
         <p>Tap anything suspicious before you decide to find <b class="y">CLUES</b> for bonus points.</p>
         ${filtered.length ? `<p class="perk">EMAIL FILTER blocked ${filtered.length} phishing emails before they reached you.</p>` : ''}
         ${trained ? '<p class="perk">TRAINING: clues are highlighted.</p>' : ''}

@@ -158,7 +158,7 @@ export function salesOpener(run) {
     .sort((a, b) => b.cost - a.cost)[0];
   if (!worst) return 'You made it through clean. Let\'s make sure your real team would too.';
   const crisis = CRISES[worst.crisis];
-  const fix = { ransomware: 'backups', takeover: 'mfa', wire: 'training', supplychain: 'edr' }[worst.crisis];
+  const fix = { ransomware: 'backups', takeover: 'mfa', wire: 'training', supplychain: 'edr', aileak: 'training' }[worst.crisis];
   const name = crisis.title.toLowerCase();
   if (fix && !owned.includes(fix)) {
     return `You skipped ${defenseById[fix].name.toLowerCase()} and the ${name} cost you ${moneyShort(worst.cost)}. Let's talk about that.`;

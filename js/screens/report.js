@@ -53,6 +53,7 @@ function renderGate(ctx) {
 const TYPE_LABEL = {
   credential: 'Fake login page', invoice: 'Fake invoice / CEO request',
   attachment: 'Malicious attachment', vendor: 'Fake vendor update',
+  shadowai: 'Shadow AI',
 };
 
 function renderReport({ el, state, go, config, sfx }) {

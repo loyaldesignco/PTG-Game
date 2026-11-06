@@ -4,6 +4,7 @@ import { CRISES, LIFELINE, BEATS } from '../data/crises.js';
 const ORDER = [
   ['credential', 'takeover'],
   ['vendor', 'supplychain'],
+  ['shadowai', 'aileak'],
   ['invoice', 'wire'],
   ['attachment', 'ransomware'],
 ];

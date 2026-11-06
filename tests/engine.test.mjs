@@ -149,3 +149,11 @@ test('missing every phish scores low even with good breach decisions', () => {
   const perfect = computeScore(simulate({ owned: ['backups', 'edr', 'mfa'], catchAll: true }));
   assert.ok(perfect.total >= 85, `perfect ${perfect.total}`);
 });
+
+test('shadow AI: appears in decks and opens the AI leak crisis', () => {
+  let seen = false;
+  for (let seed = 1; seed < 50; seed++) if (buildDeck(profile, mulberry32(seed)).some(e => e.type === 'shadowai')) seen = true;
+  assert.ok(seen);
+  const crises = buildBreach(['shadowai'], []).steps.filter(s => s.kind === 'crisis').map(s => s.crisis.id);
+  assert.deepEqual(crises, ['aileak']);
+});

@@ -68,13 +68,20 @@ export function mount({ el, go, state, sfx, config }) {
     url.search = '';
     url.searchParams.set('challenge', run.profile.company);
     const text = `${run.profile.company} scored ${score.total}/100 on CLICK, PTG's phishing and ransomware game. Can you beat it?`;
+    const btn = el.querySelector('#team');
     try {
-      if (navigator.share) await navigator.share({ title: 'CLICK', text, url: url.toString() });
-      else {
-        await navigator.clipboard.writeText(`${text} ${url}`);
-        el.querySelector('#team').textContent = 'LINK COPIED!';
-      }
-    } catch { /* share cancelled */ }
+      if (!navigator.share) throw new Error('no share');
+      await navigator.share({ title: 'CLICK', text, url: url.toString() });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return; // user closed the share sheet
+    }
+    try {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      btn.textContent = 'LINK COPIED!';
+    } catch {
+      btn.textContent = 'COPY THE PAGE LINK';
+    }
   });
   return () => cancelAnimationFrame(raf);
 }

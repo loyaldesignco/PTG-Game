@@ -1,0 +1,11 @@
+{
+  "name": "click-ptg-game",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CLICK: a 3-minute pixel art phishing and ransomware game for PTG",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
